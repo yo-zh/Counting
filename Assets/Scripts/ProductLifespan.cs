@@ -7,22 +7,20 @@ public class ProductLifespan : MonoBehaviour
     [SerializeField] 
     private float lifespan;
 
+    [SerializeField]
     private float timer = 0;
 
     void Update()
     {
-        if (!gameObject.activeInHierarchy)
+        timer += Time.deltaTime;
+        if (timer >= lifespan)
         {
-            return;
+            gameObject.SetActive(false);
         }
-        else
-        {
-            timer += Time.deltaTime;
-            if (timer >= lifespan)
-            {
-                timer = 0;
-                gameObject.SetActive(false);
-            }
-        }
+    }
+
+    private void OnDisable()
+    {
+        timer = 0;
     }
 }
