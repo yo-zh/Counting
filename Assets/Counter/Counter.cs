@@ -6,9 +6,19 @@ using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
-    public Text CounterText;
+    public static Counter SharedInstance;
+
+
+    [SerializeField]
+    private Text CounterText;
 
     private int Count = 0;
+    public void DecreaseCount() { Count -= 5; CounterText.text = "Count : " + Count; }
+
+    private void Awake()
+    {
+        SharedInstance = this;
+    }
 
     private void Start()
     {
