@@ -35,7 +35,6 @@ public class ObjectPooler : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-        // otherwise, return null   
         return null;
     }
 
