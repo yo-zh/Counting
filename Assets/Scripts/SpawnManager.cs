@@ -10,11 +10,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject fabricatorPrefab;
 
-    [SerializeField]
-    private float verticalSpawnStep = 5;
+    //[SerializeField]
+    //private float verticalSpawnStep = 5;
 
-    [SerializeField]
-    private float horizontalSpawnStep = 5;
+    //[SerializeField]
+    //private float horizontalSpawnStep = 5;
 
     [SerializeField] private float spawnRate = 5.0f;
     void Start()

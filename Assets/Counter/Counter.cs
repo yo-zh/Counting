@@ -13,7 +13,7 @@ public class Counter : MonoBehaviour
     private Text CounterText;
 
     private int Count = 0;
-    public void DecreaseCount() { Count -= 5; CounterText.text = "Count : " + Count; }
+    public void DecreaseCount() { Count--; CounterText.text = "Count : " + Count; }
 
     private void Awake()
     {
