@@ -5,9 +5,12 @@ using UnityEngine;
 public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler SharedInstance;
-    public List<GameObject> pooledObjects;
-    public GameObject objectToPool;
+    public List<GameObject> pooledProducts;
+    public List<GameObject> pooledBadProducts;
+    public GameObject productToPool;
+    public GameObject badProductToPool;
     public int amountToPool;
+    public int amountToPoolBad;
 
     void Awake()
     {
@@ -16,26 +19,48 @@ public class ObjectPooler : MonoBehaviour
 
     void Start()
     {
-        pooledObjects = new List<GameObject>();
+        pooledProducts = new List<GameObject>();
         for (int i = 0; i < amountToPool; i++)
         {
-            GameObject obj = Instantiate(objectToPool);
+            GameObject obj = Instantiate(productToPool);
             obj.SetActive(false);
-            pooledObjects.Add(obj);
+            pooledProducts.Add(obj);
+            obj.transform.SetParent(this.transform);
+        }
+
+        pooledBadProducts = new List<GameObject>();
+        for (int i = 0; i < amountToPoolBad; i++)
+        {
+            GameObject obj = Instantiate(badProductToPool);
+            obj.SetActive(false);
+            pooledBadProducts.Add(obj);
             obj.transform.SetParent(this.transform);
         }
     }
 
-    public GameObject GetPooledObject()
+    public GameObject GetPooledProduct()
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        for (int i = 0; i < pooledProducts.Count; i++)
         { 
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!pooledProducts[i].activeInHierarchy)
             {
-                return pooledObjects[i];
+                return pooledProducts[i];
             }
         }
         return null;
     }
+
+    public GameObject GetBadPooledProduct()
+    {
+        for (int i = 0; i < pooledBadProducts.Count; i++)
+        { 
+            if (!pooledBadProducts[i].activeInHierarchy)
+            {
+                return pooledBadProducts[i];
+            }
+        }
+        return null;
+    }
+
 
 }

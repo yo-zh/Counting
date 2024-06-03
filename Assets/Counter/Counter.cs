@@ -23,5 +23,11 @@ public class Counter : MonoBehaviour
             CounterText.text = "Count : " + Count;
             other.gameObject.SetActive(false);
         }
+        else
+        {
+            Count -= 5;
+            CounterText.text = "Count : " + Count;
+            other.gameObject.SetActive(false);
+        }
     }
 }

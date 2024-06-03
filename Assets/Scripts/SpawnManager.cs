@@ -7,6 +7,15 @@ public class SpawnManager : MonoBehaviour
     private GameObject objectPool;
     private GameObject[] spawnPoints;
 
+    [SerializeField]
+    private GameObject fabricatorPrefab;
+
+    [SerializeField]
+    private float verticalSpawnStep = 5;
+
+    [SerializeField]
+    private float horizontalSpawnStep = 5;
+
     [SerializeField] private float spawnRate = 5.0f;
     void Start()
     {
@@ -17,7 +26,7 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private GameObject RandomSpawnPoint()
@@ -28,10 +37,27 @@ public class SpawnManager : MonoBehaviour
         return spawnPoint;
     }
 
+    private GameObject RandomProduct()
+    {
+        int randomProductId = Random.Range(0, 2);
+        GameObject randomProduct;
+
+        if (randomProductId == 0) 
+        {
+            randomProduct = ObjectPooler.SharedInstance.GetPooledProduct();
+        }
+        else
+        {
+            randomProduct = ObjectPooler.SharedInstance.GetBadPooledProduct();
+        }
+
+        return randomProduct;
+    }
+
     private void SpawnProduct()
     {
         GameObject spawnPoint = RandomSpawnPoint();
-        GameObject pooledProduct = ObjectPooler.SharedInstance.GetPooledObject();
+        GameObject pooledProduct = RandomProduct();
 
         if (pooledProduct != null)
         {
